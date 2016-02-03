@@ -26,6 +26,8 @@
 
 				// call sections.toggle() with param route
 				sections.toggle(currentHash,newHash);
+
+				//update currentHash with the newHash parameter
 				currentHash = newHash;
 			}, false);
 		}
@@ -33,10 +35,6 @@
 
 	var sections = {
 		toggle: function(currentHash,newHash){
-
-			console.log(currentHash);
-			console.log(newHash);
-
 
 			document.querySelector(currentHash).classList.remove('active');
 			document.querySelector(newHash).classList.add('active');
