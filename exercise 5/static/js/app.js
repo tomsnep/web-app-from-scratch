@@ -38,8 +38,7 @@
 
 			document.querySelector(currentHash).classList.remove('active');
 			document.querySelector(newHash).classList.add('active');
-			
-			console.log('blabla');
+
 		}
 	};
 
