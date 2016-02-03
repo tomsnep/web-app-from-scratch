@@ -78,16 +78,17 @@ Single page apps are distinguished by their ability to redraw any part of the UI
 
 Bronnen:
 
-1	Single Page Application: advantages and disadvantages
+1 Single Page Application: advantages and disadvantages
 http://stackoverflow.com/questions/21862054/single-page-application-advantages-and-disadvantages
-2	Technically speaking the pro's and con's of SPA's 	
+
+2 Technically speaking the pro's and con's of SPA's 	
 http://www.dialogtech.com/blog/technically-speaking/technically-speaking-the-pros-and-cons-of-single-page-applications-spas
 
 
 
 =====================
 
-Aantekeningen live coding sessie 3 feb.
+#Aantekeningen live coding sessie 3 feb.
 
 object: 
 
