@@ -8,7 +8,10 @@
 *
 *   Copyleft 2012, all wrongs reversed.
 */
-(function() {
+
+(function () {
+    'use strict';
+
     // Variable declaration
     var sandbox = "sandbox";
     var lineair = "lineair";
@@ -16,15 +19,21 @@
     var gpsUnavailable = 'gpsUnavailable';
     var positionUpdated = 'positionUpdated';
     var refreshRate = 1000;
-    var currentPosition = currentPositionMarker = customDebugging = debugId = map = interval =intervalCounter = updateMap = false;
+    var currentPosition = 
+        currentPositionMarker = 
+        customDebugging = 
+        debugId = 
+        map = 
+        interval = 
+        intervalCounter = 
+        updateMap = false;
     var locatieRij = markerRij = [];
-    var ET = new EventTarget();
 
     // Event functies - bron: http://www.nczonline.net/blog/2010/03/09/custom-events-in-javascript/ Copyright (c) 2010 Nicholas C. Zakas. All rights reserved. MIT License
     // Gebruik: ET.addListener('foo', handleEvent); ET.fire('event_name'); ET.removeListener('foo', handleEvent);
-    function EventTarget(){
-        this._listeners ={}
-    }
+     function EventTarget(){
+            this._listeners ={}
+        }
 
     EventTarget.prototype = {
         constructor: EventTarget,addListener: function(a,c){
@@ -42,110 +51,53 @@
             }
         };
 
-    // Test of GPS beschikbaar is (via geo.js) en vuur een event af
-    function init(){
-        debugMessage("Controleer of GPS beschikbaar is...");
+    var geo = {
+        // Test of GPS beschikbaar is (via geo.js) en vuur een event af
+        init: function() = {
+            debugMessage("Controleer of GPS beschikbaar is...");
 
-        ET.addListener(gpsAvailable, startInterval);
-        ET.addListener(gpsUnavailable, function(){
-            debugMessage('GPS is niet beschikbaar.');
-        });
+            ET.addListener(gpsAvailable, this.startInterval);
+            ET.addListener(gpsUnavailable, function(){
+                debugMessage('GPS is niet beschikbaar.');
+            });
 
-        (geo_position_js.init())?ET.fire(gpsAvailable):ET.fire(gpsUnavailable);
-    }
-
-    // Start een interval welke op basis van refreshRate de positie updated
-    function startInterval(event){
-        debugMessage("GPS is beschikbaar, vraag positie.");
-        updatePosition();
-        interval = self.setInterval(updatePosition, refreshRate);
-        ET.addListener(positionUpdated, checkLocations);
-    }
-
-
-
-    Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
-    function updatePosition(){
-        intervalCounter++;
-        geo_position_js.getCurrentPosition(setPosition, geoErrorHandler, {enableHighAccuracy:true});
-    }
-
-    // Callback functie voor het instellen van de huidige positie, vuurt een event af
-    function setPosition(position){
-        currentPosition = position;
-        ET.fire("positionUpdated");
-        debugMessage(intervalCounter+" positie lat:"+position.coords.latitude+" long:"+position.coords.longitude);
-    }
-
-
-    // Controleer de locaties en verwijs naar een andere pagina als we op een locatie zijn
-    function checkLocations(event){
-        // Liefst buiten google maps om... maar helaas, ze hebben alle coole functies
-        for (var i = 0; i < locaties.length; i++) {
-            var locatie = {
-                coords:{
-                    latitude: locaties[i][3],
-                    longitude: locaties[i][4]
-                }
-            };
-
-            if(calculateDistance(locatie, currentPosition)<locaties[i][2]){
-
-                // Controle of we NU op die locatie zijn, zo niet gaan we naar de betreffende page
-                if(window.location!=locaties[i][1] && localStorage[locaties[i][0]]=="false"){
-                    // Probeer local storage, als die bestaat incrementeer de locatie
-                    try {
-                        (localStorage[locaties[i][0]] == "false")?localStorage[locaties[i][0]]=1:localStorage[locaties[i][0]]++;
-                    } catch(error) {
-                        debugMessage("Localstorage kan niet aangesproken worden: "+error);
-                    }
-
-                    // TODO: Animeer de betreffende marker
-
-                    window.location = locaties[i][1];
-                    debugMessage("Speler is binnen een straal van "+ locaties[i][2] +" meter van "+locaties[i][0]);
-                }
-            }
-        }
-    }
-
-    Bereken het verchil in meters tussen twee punten
-    function calculateDistance(p1, p2){
-        var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude),
-            pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
-        return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
-    }
-
-    //object literal notation for commented code above
-
-    var position = {
-
-        updatePosition:function(){
-            intervalCounter++;
-            geo_position_js.getCurrentPosition(setPosition, geoErrorHandler, {enableHighAccuracy:true});
+            (geo_position_js.init())?ET.fire(gpsAvailable):ET.fire(gpsUnavailable);
         },
-        setPosition:function(position){
+
+        // Start een interval welke op basis van refreshRate de positie updated
+        startInterval: function(event){
+            debugMessage("GPS is beschikbaar, vraag positie.");
+            this.updatePosition();
+            interval = self.setInterval(this.updatePosition, refreshRate);
+            ET.addListener(positionUpdated, this.checkLocations);
+        },
+
+        // Vraag de huidige positie aan geo.js, stel een callback in voor het resultaat
+        updatePosition: function(){
+            intervalCounter++;
+            geo_position_js.getCurrentPosition(this.setPosition, debug.geoErrorHandler {enableHighAccuracy:true});
+        },
+
+        // Callback functie voor het instellen van de huidige positie, vuurt een event af
+        setPosition: function(position){
             currentPosition = position;
             ET.fire("positionUpdated");
             debugMessage(intervalCounter+" positie lat:"+position.coords.latitude+" long:"+position.coords.longitude);
         },
-        checkLocations:function(event){
+
+        // Controleer de locaties en verwijs naar een andere pagina als we op een locatie zijn
+        checkLocations: function(event){
             // Liefst buiten google maps om... maar helaas, ze hebben alle coole functies
             for (var i = 0; i < locaties.length; i++) {
-                var locatie = {
-                    coords:{
-                        latitude: locaties[i][3],
-                        longitude: locaties[i][4]
-                    }
-                };
+                var locatie = {coords:{latitude: locaties[i][3],longitude: locaties[i][4]}};
 
-                if(calculateDistance(locatie, currentPosition)<locaties[i][2]){
+                if(this.calculateDistance(locatie, currentPosition)<locaties[i][2]){
 
                     // Controle of we NU op die locatie zijn, zo niet gaan we naar de betreffende page
                     if(window.location!=locaties[i][1] && localStorage[locaties[i][0]]=="false"){
                         // Probeer local storage, als die bestaat incrementeer de locatie
                         try {
-                            (localStorage[locaties[i][0]] == "false")?localStorage[locaties[i][0]]=1:localStorage[locaties[i][0]]++;
+                            (localStorage[locaties[i][0]]=="false")?localStorage[locaties[i][0]]=1:localStorage[locaties[i][0]]++;
                         } catch(error) {
                             debugMessage("Localstorage kan niet aangesproken worden: "+error);
                         }
@@ -155,24 +107,26 @@
                         window.location = locaties[i][1];
                         debugMessage("Speler is binnen een straal van "+ locaties[i][2] +" meter van "+locaties[i][0]);
                     }
-                };
-            };
-        },
-        calculateDistance: function(p1, p2){
-                pos1: {                                                             // is this possible? or are these supposed to be var's
-                    new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude)
-                },
-                pos2: {
-                    new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude)
                 }
+            }
+        },
+
+        // Bereken het verchil in meters tussen twee punten
+        calculateDistance: function(){
+            var pos1 = new google.maps.LatLng(p1.coords.latitude, p1.coords.longitude);
+            var pos2 = new google.maps.LatLng(p2.coords.latitude, p2.coords.longitude);
             return Math.round(google.maps.geometry.spherical.computeDistanceBetween(pos1, pos2), 0);
         }
-    };
+    }
+
+
+
+
 
 
     // GOOGLE MAPS FUNCTIES
     /**
-     * generateMap(myOptions, canvasId)
+     * generate_map(myOptions, canvasId)
      *  roept op basis van meegegeven opties de google maps API aan
      *  om een kaart te genereren en plaatst deze in het HTML element
      *  wat aangeduid wordt door het meegegeven id.
@@ -183,105 +137,95 @@
      *  @param canvasID:string - het id van het HTML element waar de
      *      kaart in ge-rendered moet worden, <div> of <canvas>
      */
-    function generateMap(myOptions, canvasId){
-        var routeList = [];
 
-    // TODO: Kan ik hier asynchroon nog de google maps api aanroepen? dit scheelt calls
-        debugMessage("Genereer een Google Maps kaart en toon deze in #"+canvasId)
-        map = new google.maps.Map(document.getElementById(canvasId), myOptions);
+    var map = {
+        generateMap: function(myOptions, canvasID){
+            // TODO: Kan ik hier asynchroon nog de google maps api aanroepen? dit scheelt calls
+            debugMessage("Genereer een Google Maps kaart en toon deze in #"+canvasId)
+            map = new google.maps.Map(document.getElementById(canvasId), myOptions);
 
-        
-        // Voeg de markers toe aan de map afhankelijk van het tourtype
-        debugMessage("Locaties intekenen, tourtype is: "+tourType);
-        for (var i = 0; i < locaties.length; i++) {
+            var routeList = [];
+            // Voeg de markers toe aan de map afhankelijk van het tourtype
+            debugMessage("Locaties intekenen, tourtype is: "+tourType);
+            for (var i = 0; i < locaties.length; i++) {
 
-            // Met kudos aan Tomas Harkema, probeer local storage, als het bestaat, voeg de locaties toe
-            try {
-                (localStorage.visited==undefined||isNumber(localStorage.visited))?localStorage[locaties[i][0]]=false:null;
-            } catch (error) {
-                debugMessage("Localstorage kan niet aangesproken worden: "+error);
+                // Met kudos aan Tomas Harkema, probeer local storage, als het bestaat, voeg de locaties toe
+                try {
+                    (localStorage.visited==undefined||isNumber(localStorage.visited))?localStorage[locaties[i][0]]=false:null;
+                } catch (error) {
+                    debugMessage("Localstorage kan niet aangesproken worden: "+error);
+                }
+
+                var markerLatLng = new google.maps.LatLng(locaties[i][3], locaties[i][4]);
+                routeList.push(markerLatLng);
+
+                markerRij[i] = {};
+                for (var attr in locatieMarker) {
+                    markerRij[i][attr] = locatieMarker[attr];
+                }
+                markerRij[i].scale = locaties[i][2]/3;
+
+                var marker = new google.maps.Marker({
+                    position: markerLatLng,
+                    map: map,
+                    icon: markerRij[i],
+                    title: locaties[i][0]
+                });
+            }
+            // TODO: Kleur aanpassen op het huidige punt van de tour
+            if(tourType == lineair){
+                // Trek lijnen tussen de punten
+                debugMessage("Route intekenen");
+                var route = new google.maps.Polyline({
+                    clickable: false,
+                    map: map,
+                    path: routeList,
+                    strokeColor: 'Black',
+                    strokeOpacity: .6,
+                    strokeWeight: 3
+                });
+
             }
 
-            var markerLatLng = new google.maps.LatLng(locaties[i][3], locaties[i][4]);
-            routeList.push(markerLatLng);
-
-            markerRij[i] = {};
-            for (var attr in locatieMarker) {
-                markerRij[i][attr] = locatieMarker[attr];
-            }
-            markerRij[i].scale = locaties[i][2]/3;
-
-            var marker = new google.maps.Marker({
-                position: markerLatLng,
+            // Voeg de locatie van de persoon door
+            currentPositionMarker = new google.maps.Marker({
+                position: kaartOpties.center,
                 map: map,
-                icon: markerRij[i],
-                title: locaties[i][0]
-            });
-        }
-    // TODO: Kleur aanpassen op het huidige punt van de tour
-        if(tourType == lineair){
-            // Trek lijnen tussen de punten
-            debugMessage("Route intekenen");
-            var route = new google.maps.Polyline({
-                clickable: false,
-                map: map,
-                path: routeList,
-                strokeColor: 'Black',
-                strokeOpacity: .6,
-                strokeWeight: 3
+                icon: positieMarker,
+                title: 'U bevindt zich hier'
             });
 
+            // Zorg dat de kaart geupdated wordt als het positionUpdated event afgevuurd wordt
+            ET.addListener(positionUpdated, this.updatePositionMap);
+        },
+
+        // Update de positie van de gebruiker op de kaart
+        updatePositionMap: function(event){
+             // use currentPosition to center the map
+            var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
+            map.setCenter(newPos);
+            currentPositionMarker.setPosition(newPos);
         }
-
-        // Voeg de locatie van de persoon door
-        currentPositionMarker = new google.maps.Marker({
-            position: kaartOpties.center,
-            map: map,
-            icon: positieMarker,
-            title: 'U bevindt zich hier'
-        });
-
-        // Zorg dat de kaart geupdated wordt als het positionUpdated event afgevuurd wordt
-        ET.addListener(positionUpdated, updatePosition);
     }
 
-    function isNumber(n) {
-      return !isNaN(parseFloat(n)) && isFinite(n);
+    // Utility's
+    var util = {
+        isNumber: function(n){
+            return !isNaN(parseFloat(n)) && isFinite(n);
+        }
     }
-
-    // Update de positie van de gebruiker op de kaart
-    function updatePosition(event){
-        // use currentPosition to center the map
-        var newPos = new google.maps.LatLng(currentPosition.coords.latitude, currentPosition.coords.longitude);
-        map.setCenter(newPos);
-        currentPositionMarker.setPosition(newPos);
-    }
-
-    // FUNCTIES VOOR DEBUGGING
-
-    // function geoErrorHandler(code, message) {
-    //     debugMessage('geo.js error '+code+': '+message);
-    // }
-    // function debugMessage(message){
-    //     (customDebugging && debugId)?document.getElementById(debugId).innerHTML:console.log(message);
-    // }
-    // function setCustomDebugging(debugId){
-    //     debugId = this.debugId;
-    //     customDebugging = true;
-    // }
-
-    //object literal notation for commented code above
-
-    var debugging = {
+    
+      // FUNCTIES VOOR DEBUGGING
+    var debug = {
         geoErrorHandler: function(code, message){
             debugMessage('geo.js error '+code+': '+message);
         },
         debugMessage: function(message){
             (customDebugging && debugId)?document.getElementById(debugId).innerHTML:console.log(message);
         },
-        setCustomDebugging: function(debugID){
+        setCustomDebugging: function(debugId){
             debugId = this.debugId;
-            customDebugging = true;   
+            customDebugging = true;
         }
-    };
+    }
 })();
