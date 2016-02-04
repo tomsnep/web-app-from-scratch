@@ -23,7 +23,6 @@
 				// declare route var with the hash
 				var newHash = window.location.hash;
 
-
 				// call sections.toggle() with param route
 				sections.toggle(currentHash,newHash);
 
