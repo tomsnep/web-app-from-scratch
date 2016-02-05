@@ -48,3 +48,7 @@
 
 	app.init(); // call app.init()
 })();
+
+//Comments Tijs Luitse:
+//Code is netjes, IFEE goed opgebouwd
+//Comments in de code maken het goed overzichtelijk en leesbaar voor anderen
