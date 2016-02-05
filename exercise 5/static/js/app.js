@@ -41,5 +41,7 @@
 		}
 	};
 
+	// Fijne beschrijving door comments
+
 	app.init(); // call app.init()
 })();

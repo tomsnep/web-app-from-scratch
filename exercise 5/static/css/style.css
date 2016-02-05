@@ -13,6 +13,7 @@
 #nav ul li {
 	width: 50%;
 	padding: 1em;
+	/* Meegeven aan de a zodat het hele vlak klikbaar wordt, ipv alleen de a tekst */
 	list-style-type: none;
 	background-color: #21825C;
 	text-align: center;
@@ -20,6 +21,7 @@
 
 #nav ul li:hover {
 	background-color: #A4D792; 
+	/* Ook aan de link meegeven */
 }
 
 #nav ul li a {
@@ -27,6 +29,7 @@
 	text-decoration: none;
 	font-size: 1.5;
 	font-family: sans-serif;
+	/* Misschien de rest van de tekst ook dit font*/
 }
 
 main > section {
