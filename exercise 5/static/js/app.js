@@ -16,9 +16,11 @@
 			
 			// use available hash to save state otherwise use #startscreen as default
 			var currentHash = window.location.hash || '#startscreen';
-			document.querySelector(currentHash).classList.add('active');
+			// new var for caching
+			var currentHashEl = document.querySelector(currentHash);
+			currentHashEl.classList.add('active');
 
-			window.addEventListener("hashchange", function(){
+			window.addEventListener('hashchange', function(){
 				
 				// declare newHash var with the hash
 				var newHash = window.location.hash;
@@ -35,8 +37,11 @@
 	var sections = {
 		toggle: function(currentHash,newHash){
 
-			document.querySelector(currentHash).classList.remove('active');
-			document.querySelector(newHash).classList.add('active');
+			var currentEl = document.querySelector(currentHash);
+			var newEl = document.querySelector(newHash);
+
+			currentEl.classList.remove('active');
+			newEl.classList.add('active');
 
 		}
 	};
