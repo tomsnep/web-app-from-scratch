@@ -20,13 +20,13 @@
 
 			window.addEventListener("hashchange", function(){
 				
-				// declare route var with the hash
+				// declare newHash var with the hash
 				var newHash = window.location.hash;
 
-				// call sections.toggle() with param route
+				// call sections.toggle()
 				sections.toggle(currentHash,newHash);
 
-				//update currentHash with the newHash parameter
+				//update currentHash with the newHash
 				currentHash = newHash;
 			}, false);
 		}
