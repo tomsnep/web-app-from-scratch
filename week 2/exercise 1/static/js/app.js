@@ -1,50 +1,17 @@
 // add iife
 (function() {
-	'use strict'
 
-	var app = {
-		init: function(){
+	aja()
+	   .url('https://api.instagram.com/v1/media/popular?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b')
+	   .type('jsonp')
+	   .cache('false')
+	   .on('success', function(data){
 
-			// call routes
-			routes.init();
-		}
-	};
+		   	var photos= {};
+		   	photos = data;
 
-	var routes = {
-		
-		init: function(){
-			
-			// use available hash to save state otherwise use #startscreen as default
-			var currentHash = window.location.hash || '#startscreen';
-			// new var for caching
-			var currentHashEl = document.querySelector(currentHash);
-			currentHashEl.classList.add('active');
-
-			window.addEventListener('hashchange', function(){
-				
-				// declare newHash var with the hash
-				var newHash = window.location.hash;
-
-				// call sections.toggle()
-				sections.toggle(currentHash,newHash);
-
-				//update currentHash with the newHash
-				currentHash = newHash;
-			}, false);
-		}
-	};
-
-	var sections = {
-		toggle: function(currentHash,newHash){
-
-			var currentEl = document.querySelector(currentHash);
-			var newEl = document.querySelector(newHash);
-
-			currentEl.classList.remove('active');
-			newEl.classList.add('active');
-
-		}
-	};
-
-	app.init(); // call app.init()
+		   	console.log(photos);
+	   })
+	   .go();
 })();
+  
