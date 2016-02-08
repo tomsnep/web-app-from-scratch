@@ -1,5 +1,6 @@
 // add iife
 (function() {
+    // lisa - ; achter 'use strict'
 	'use strict'
 
 	var app = {
