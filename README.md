@@ -26,7 +26,21 @@ de scope binnen een bepaalde functie, grootste voordeel hiervan is conflicten ku
 context:
 het object waar je je op dat moment in bevindt, verwijst naar this
 
-closure: 
+
+```
+// closure
+
+var pipo = {
+	shoeSize: 80,
+	laugh: function() {
+		var self = this //closure
+
+		setTimout(function(){
+			console.log(self.shoeSize);
+			},3000)
+	}
+}
+```
 
 iife: 
 immediate invoke function expression = een functie die onmiddelijk wordt aangeroepen 
