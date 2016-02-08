@@ -1,6 +1,6 @@
 // add iife
 (function() {
-	'use strict'
+	'use strict'//Makes sure you can only use declared variables. If you don't declrare variables in use strict mode the code might crash.
 
 	var app = {
 		init: function(){
