@@ -45,9 +45,10 @@ main > section {
 	background-color: #F7FDB6;
 }
 
-[data-bind="photoData"] li{
+/*li.photoItem{
+	width: 10em;
 	display: inline-block;
-}
+}*/
 
 .active {
 	display: block;

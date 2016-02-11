@@ -7,7 +7,7 @@
 	<script src="static/libs/aja.min.js"></script> 
 	<script src="static/libs/transparency.min.js"></script> 
 	<script src="static/libs/routie.js"></script> 
-	<script src="underscore-min.js"></script>
+	<script src="static/libs/underscore-min.js"></script>
 	<script src="static/js/app.js" defer></script> 
 </head>
 <body>
@@ -37,7 +37,7 @@
 
 			<h1 data-bind="title"></h1>
 			<ul id="photoGallery">
-                <li class="photoItem">
+                <li data-bind="photoId" class="photoItem">
                     <a href="" data-bind="photoLink">
                         <img data-bind="photoImage"/>
                         <span data-bind="photoLikes"></span>

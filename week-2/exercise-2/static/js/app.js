@@ -70,9 +70,14 @@
 			   .type('jsonp')
 			   .cache('false')
 			   .on('success', function(data){
-			   		console.log(data);
+			   		
                     var data = data.data;
-                    console.log(data);
+                   		
+                    var filteredData = _.map(data, function(photo) {
+                    	return _.pick(photo, 'link','images','likes','caption','user', 'id');
+                    });
+
+                    console.log(filteredData)
 
                     var directives = {
 
@@ -105,10 +110,15 @@
                         	text: function(params) {
                         		return 'Posted by:' + this.user.username;
                         	}
+                        },
+                        photoId: {
+                        	id: function(params){
+                        		return this.id;
+                        	}
                         }
                     };
 
-                    Transparency.render(document.getElementById('photoGallery'), data,  directives);
+                    Transparency.render(document.getElementById('photoGallery'), filteredData,  directives);
 
 			   })
 			   .go();
