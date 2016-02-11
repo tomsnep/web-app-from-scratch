@@ -126,3 +126,6 @@
 	};
 	app.init(); // call app.init()
 })();
+
+//in cooperation with Tijs Luitse
+//Credits to Casper Boutens for the if else statement & underscore.js help
