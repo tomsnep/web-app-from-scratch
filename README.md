@@ -152,6 +152,152 @@ pipo.laugh();
 met een protoype object kan je informatie ophalen van andere prototype objecten. Bijvoorbeeld een prototype object human heeft een set emoties, deze gelden ook voor prototype object clown. Dmv het prototype object kan de clown deze set emoties overerven van de human. 
 
 
+eFocus
+
+ECMAScript 2015 / ES6 = degene die de standaard definieert
+
+Babel (tool) ecmascript 2015 schrijven > maakt het leesbaar voor de browser (oudere versie van javascript);
 
 
+let ipv var in bijv een for loop for(let i = 0) < let zit alleen in de local scope nu ipv global scope;
+
+const is een var die je maar een keer mag declareren. 
+Maar bijv wel de array.
+
+const a = 1;
+
+const a = [];
+a.push(1,2,3) < dit mag
+
+
+arrowFunction
+```
+<!-- var total = [1,2,3].reduce(function(a,b){
+	return a + b;
+}) -->
+```
+var total = [1,2,3].reduce((a,b) => a + b);
+
+=> geeft een arrow function 
+
+console.log(total);
+```
+```
+<!-- var Counter = function() {
+	this.counter =0;
+	window.setInterval(function(){
+		this.counter++;
+		console.log(this.counter;)
+	},1000)
+} -->
+```
+var Counter = function() {
+	this.counter =0;
+	window.setInterval(() => {
+		this.counter++;
+		console.log(this.counter;)
+	},1000)
+}
+```
+met een arrow functie refereert this naar de context van de functie Counter(), ipv het window object (window.setInterval). 
+
+
+Promises
+```
+<!-- function timeout(duration, callback){
+	window.setTimeout(callback, duration);
+};
+
+timeout(1000, function(){
+	console.log('test')
+})
+ -->
+```
+```
+function timeout (duration) {
+	return new Promise((resolve, reject) => {
+		window.setTimout(function(){
+			reject(duration);
+		}, duration);
+	});
+};
+
+timout(1000)
+	.then(response => {
+		return response + 10;
+	})
+	.then(response => {
+		console.log(response)
+	})
+	.catch(err => {
+		console.log('err');
+	})
+
+=== 1010
+```
+resolve staat gelinkt aan .then
+rejet staat gelinkt aan .catch
+
+.then kunnen gechaint worden, wat er in de eerste then gereturned wordt wordt meegegeven aan de volgende .then
+```
+<!-- Promise.all([timeout(1000), timeout(2000)])
+	.then(function(response) {
+		console.log(response);
+	})
+	.catch(function(err) {
+		console.log(err);
+	}) -->
+```
+```
+Promise.all([timeout(1000), timeout(2000)])
+	.then(response => {
+		console.log(response);
+	})
+	.catch(err => {
+		console.log(err);
+	})
+```
+```
+function getWebsite(url) {
+		return new Promise(function(resolve,reject) {
+			var request = new XMLHttpRequest();
+			
+			request.onloadstart = function() {
+				showLoader();
+			}
+
+			request.onloadend = function() {
+				hideLoad();
+			}
+
+			request.onload = fcuntion(response) {
+				resolve(response);
+			}
+
+			request.onload = resolve;
+			request.onerror = reject;
+
+			request.open('GET', url, true);
+			request.send();
+		});
+};
+
+getWebsite('http://www.google.nl')
+	.then(function(response) {
+		console.log(response);
+	})
+	.catch(function(reject))
+```
+
+recursive function
+```
+
+function add (a) {
+	return function (b){
+		console.log(a + b);
+	};
+};
+
+add(5)(5) ==== 10 
+```
 

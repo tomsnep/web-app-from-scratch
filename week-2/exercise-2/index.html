@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<link rel="stylesheet" href="static/css/style.css">
+	<script src="static/libs/aja.min.js"></script> 
+	<script src="static/libs/transparency.min.js"></script> 
+	<script src="static/libs/routie.js"></script> 
+	<script src="underscore-min.js"></script>
+	<script src="static/js/app.js" defer></script> 
+</head>
+<body>
+	<section id="nav">
+		<ul>
+			<li>
+				<a href="#startscreen">
+					startscreen
+				</a>
+			</li>
+			<li>
+				<a href="#photo-feed">
+					Photo feed
+				</a>
+			</li>
+		</ul>
+	</section>
+	<main>
+		<section id="startscreen" >
+			<h1>Startscreen</h1>
+		</section>
+		<section id="photo-feed">
+			<form action="">
+				<input type="text" class="searchInput"></input>
+				<input type="submit" class="searchSubmit"></input>
+			</form>
+
+			<h1 data-bind="title"></h1>
+			<ul id="photoGallery">
+                <li class="photoItem">
+                    <a href="" data-bind="photoLink">
+                        <img data-bind="photoImage"/>
+                        <span data-bind="photoLikes"></span>
+                        <span data-bind="photoTitle"></span>
+                        <span data-bind="photoUser"></span>
+                    </a>
+                </li>
+            </ul>
+		</section>
+	</main>
+</body>
+</html>	

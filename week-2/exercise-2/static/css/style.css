@@ -1,0 +1,54 @@
+/* http://colorhunt.co/c/13136 */
+* {
+	margin: 0;
+	padding: 0;
+	box-sizing: border-box;
+}
+
+#nav ul{
+	display: flex;
+	flex-direction: row;
+}
+
+#nav ul li {
+	width: 50%;
+	padding: 1em;
+	list-style-type: none;
+	background-color: #21825C;
+	text-align: center;
+}
+
+#nav ul li:hover {
+	background-color: #A4D792; 
+}
+
+#nav ul li a {
+	color: white;
+	text-decoration: none;
+	font-size: 1.5;
+	font-family: sans-serif;
+}
+
+main > section {
+	display: none;
+}
+
+#startscreen {
+	width: 100%;
+	height: 80vh;
+	background-color: #424141;
+}
+
+#photo-feed {
+	width: 100%;
+	height: 80vh;
+	background-color: #F7FDB6;
+}
+
+[data-bind="photoData"] li{
+	display: inline-block;
+}
+
+.active {
+	display: block;
+}
