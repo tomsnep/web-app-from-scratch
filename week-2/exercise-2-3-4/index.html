@@ -11,6 +11,7 @@
 	<script src="static/js/app.js" defer></script> 
 </head>
 <body>
+	<!-- Maybe also use aria roles for blind people -->
 	<section id="nav">
 		<ul>
 			<li>
@@ -34,18 +35,18 @@
 				<input type="text" class="searchInput" placeholder="insert a tag"></input>
 				<input type="submit" class="searchSubmit"></input>
 			</form>
-
+			<!-- Added some tab-spaces -->
 			<h1 data-bind="title"></h1>
 			<ul id="photoGallery">
-                <li data-bind="photoId" class="photoItem">
-                    <a href="" data-bind="photoLink">
-                        <img data-bind="photoImage"/>
-                        <span data-bind="photoLikes"></span>
-                        <span data-bind="photoTitle"></span>
-                        <span data-bind="photoUser"></span>
-                    </a>
-                </li>
-            </ul>
+		                <li data-bind="photoId" class="photoItem">
+		                    <a href="" data-bind="photoLink">
+		                        <img data-bind="photoImage"/>
+		                        <span data-bind="photoLikes"></span>
+		                        <span data-bind="photoTitle"></span>
+		                        <span data-bind="photoUser"></span>
+		                    </a>
+		                </li>
+        		 </ul>
 		</section>
 	</main>
 </body>
