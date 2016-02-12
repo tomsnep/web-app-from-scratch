@@ -1,6 +1,8 @@
 # web-app-from-scratch
 Repository for the course Web app from scratch from the minor Everything Web.
 
+[Exercises can be found here](http://tomsnep.github.io)
+
 #Aantekeningen live coding sessie 3 feb.
 
 object: 
