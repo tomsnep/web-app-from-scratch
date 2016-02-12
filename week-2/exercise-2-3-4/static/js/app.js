@@ -77,7 +77,7 @@
                     	return _.pick(photo, 'link','images','likes','caption','user', 'id');
                     });
 
-                    console.log(filteredData)
+                    console.log(filteredData);
 
                     var directives = {
 
