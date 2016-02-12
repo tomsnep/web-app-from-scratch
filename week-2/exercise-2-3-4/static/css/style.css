@@ -45,10 +45,19 @@ main > section {
 	background-color: #F7FDB6;
 }
 
-/*li.photoItem{
-	width: 10em;
+
+.photoItem {
+	width: 25em;
 	display: inline-block;
-}*/
+}
+.photoItem img {
+	max-width: 100%;
+}
+
+.photoItem span {
+	display: block;
+	max-width: 100%;
+}
 
 .active {
 	display: block;
