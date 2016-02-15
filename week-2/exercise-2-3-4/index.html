@@ -14,38 +14,98 @@
 	<section id="nav">
 		<ul>
 			<li>
-				<a href="#startscreen">
-					startscreen
+				<a href="#user-search">
+					Search on user
 				</a>
 			</li>
 			<li>
-				<a href="#photo-feed">
-					Populair photo feed
+				<a href="#tag-search">
+					Search on tag
 				</a>
 			</li>
 		</ul>
 	</section>
 	<main>
-		<section id="startscreen" >
-			<h1>Startscreen</h1>
-		</section>
-		<section id="photo-feed">
+		<section id="user-search">
+			<h1>Search for a user</h1>
 			<form action="">
-				<input type="text" class="searchInput" placeholder="insert a tag"></input>
-				<input type="submit" class="searchSubmit"></input>
+				<input type="text" class="search-user-input" placeholder="insert a username"></input>
+				<input type="submit" class="search-user-submit"></input>
 			</form>
 
-			<h1 data-bind="title"></h1>
-			<ul id="photo-gallery">
-                <li data-bind="photoId" class="photoItem">
-                    <a href="" data-bind="photoLink">
-                        <img data-bind="photoImage"/>
-                        <span data-bind="photoLikes"></span>
-                        <span data-bind="photoTitle"></span>
-                        <span data-bind="photoUser"></span>
-                    </a>
-                </li>
-            </ul>
+			<div id="user-gallery">
+				<h1 data-bind="tagTitle"></h1>
+				<ul id="user-gallery-ul">
+	                <li data-bind="userId" class="userItem">
+	                    <a href="" data-bind="userLink">
+	                        <img data-bind="userThumbnail"/>
+	                        <span data-bind="username"></span>
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+		
+	        <div id="user-detail-view">
+	            <a href="" data-bind="photoLink">
+                    <img data-bind="photoImage"/>
+                    <span data-bind="photoLikes"></span>
+                    <span data-bind="photoTitle"></span>
+                    <span data-bind="photoUser"></span>
+	            </a>
+	        </div>
+
+		</section>
+
+		<section id="user-feed">
+			
+			<div id="user-info">
+				<img data-bind="profilePicture"/>
+				<span data-bind="username"></span>
+				<span data-bind="media"></span>
+				<span data-bind="followers"></span>
+				<span data-bind="follows"></span>
+				<a data-bind="website" target="_blank"></a>
+			</div>
+			
+			<div id="user-photo-feed">
+				<ul>
+	                <li data-bind="photoId" class="photoItem">
+	                    <a href="" data-bind="photoLink">
+	                        <img data-bind="imgSrc"/>
+	                        <span data-bind="likes">
+	                    </a>
+	                </li>
+	            </ul>
+	        </div> 
+
+		</section>
+
+		<section id="tag-search">
+			<h1>Search for on a tag</h1>
+			<form action="">
+				<input type="text" class="search-input" placeholder="insert a tag"></input>
+				<input type="submit" class="search-submit"></input>
+			</form>
+
+			<div id="photo-gallery">
+				<h1 data-bind="tagTitle"></h1>
+				<ul id="photo-gallery-ul">
+	                <li data-bind="photoId" class="photoItem">
+	                    <a href="" data-bind="photoLink">
+	                        <img data-bind="photoThumbnail"/>
+	                    </a>
+	                </li>
+	            </ul>
+	        </div>
+			
+			<div id="photo-detail-view">
+	            <a href="" data-bind="photoLink">
+                    <img data-bind="photoImage"/>
+                    <span data-bind="photoLikes"></span>
+                    <span data-bind="photoTitle"></span>
+                    <span data-bind="photoUser"></span>
+	            </a>
+	        </div>
 		</section>
 	</main>
 </body>
