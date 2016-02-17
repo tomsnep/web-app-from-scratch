@@ -83,6 +83,8 @@ var allData;
 
 	var userSearch = {
 
+		loader: document.querySelector('.loader'),
+
 		searchTag: function() {
 
 			// select submit and input fields 
@@ -99,6 +101,9 @@ var allData;
 				// fire getData() and renderUser() functions to get data and show search value 
 				userSearch.getData(user);
 				userSearch.renderUser(user);
+
+				userSearch.loader.classList.add('loader-active');
+
 			}
 		},
 
@@ -120,6 +125,7 @@ var allData;
 
                     //fire renderData() to render the list of users
                     userSearch.renderData(filteredData);
+
 			   })
 			   .go();
 		},
@@ -150,8 +156,9 @@ var allData;
             };
 
             // render data
+            userSearch.loader.classList.remove('loader-active');
             Transparency.render(userGalleryUl, filteredData,  directives);
-		
+			
 		},
 
 		// render chosen Username as Title;
@@ -174,6 +181,7 @@ var allData;
 	var userInfo = {
 
 		getData: function(userId) {
+
 
 			//fire ajax call to get info about the userId
 			aja()
@@ -238,6 +246,10 @@ var allData;
 	var userFeed = {
 
 		getData: function(userId) {
+
+			// show loader
+			userSearch.loader.classList.add('loader-active');
+
 			//fire ajax call to get photofeed of the user
 			aja()
 			   .url('https://api.instagram.com/v1/users/' + userId + '/media/recent/?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b')
@@ -285,6 +297,9 @@ var allData;
 
             //render data
             Transparency.render(userFeedUl, data,  directives);
+
+            // hide loader when data is rendered
+            userSearch.loader.classList.remove('loader-active');
 		}
 	};
 
@@ -571,6 +586,22 @@ var allData;
 		}
 	};
 
+	var hammer = {
+		enableSwipe: function(){
+			
+			var el = document.querySelector('main');
+			var menuSwipe = new Hammer(el);
+
+			menuSwipe.on('swipeleft', function(){
+				var menuItem = document.querySelector('a[href="#user-search"]');
+				menuItem.click();
+			});
+			menuSwipe.on('swiperight', function(){
+				var menuItem = document.querySelector('a[href="#tag-search"]');
+				menuItem.click();
+			});
+		}()
+	}
 	app.init(); // call app.init()
 })();
 

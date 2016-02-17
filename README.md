@@ -303,3 +303,14 @@ function add (a) {
 add(5)(5) ==== 10 
 ```
 
+#Functional programming
+
+Gebruik maken van functies. Functies hebben parameters, zo min mogelijk variabelen gebruiken. Er is geen state, alleen de start en het einde. 
+
+var iets = function(){
+	return niets;
+}
+
+iets = niets;
+
+
