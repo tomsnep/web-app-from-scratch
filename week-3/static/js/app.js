@@ -1,5 +1,3 @@
-var allData;
-
 // add iife
 (function() {
 	'use strict'
@@ -570,7 +568,7 @@ var allData;
                 	}
                 },
                 photoUser: {
-                	text: function(params) {
+                	text: function(params){
                 		return 'Posted by:' + this.user.username;
                 	}
                 },
@@ -586,10 +584,51 @@ var allData;
 		}
 	};
 
+	var animations = {
+
+		// clickListener: function(){
+		// 	var menuItems = document.querySelectorAll('#nav a');
+
+		// 	menuItems.forEach()
+
+		// 	menuItem.addEventListener('click', function(){
+		// 		console.log('addEventListener works')
+		// 		animations.menuStyle();
+		// 	});
+		// }(),
+		// menuStyle: function(){
+		// 	var hash = window.location.hash;
+		// 	var navEl = document.querySelectorAll('#nav a[href]');
+		// 	var navElLength = navEl.length;
+
+		// 	console.log('works')
+		// 	for(var i = 0; i < navElLength; i++){
+		// 		var navElHash = navEl[i].getAttribute('href');
+				
+		// 		if (hash == navElHash) {
+		// 			console.log(navElHash);
+		// 		}
+		// 	}
+
+			// console.log(navEl);
+
+			// // var parent = navEl.parentElement;
+			// for()
+			// if (hash = navEl) {
+				
+		// 	// 	// parent.classList.add('menu-active');
+		// 	// 	console.log(navEl);
+		// 	// } else {
+
+		// 	// }
+		// 	// console.log(navEl);
+		// }()
+	}
+
 	var hammer = {
 		enableSwipe: function(){
 			
-			var el = document.querySelector('main');
+			var el = document.querySelector('body');
 			var menuSwipe = new Hammer(el);
 
 			menuSwipe.on('swipeleft', function(){
