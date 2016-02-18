@@ -9,6 +9,8 @@
 	<script src="static/libs/routie.js"></script> 
 	<script src="static/libs/underscore-min.js"></script>
 	<script src="static/libs/hammer.min.js"></script>
+	<script src="static/libs/shake.js"></script>
+	<script src="static/libs/fastclick.js"></script>
 </head>
 <body>
 	<section id="nav">
@@ -26,18 +28,24 @@
 		</ul>
 	</section>
 	<main>
-		<div class="loader">
+		<!-- <div class="loader">
 			<img src="static/assets/img/loader.gif" alt="loader">
+		</div> -->
+		<div class="loader">
+		  <div class="bounce1"></div>
+		  <div class="bounce2"></div>
+		  <div class="bounce3"></div>
 		</div>
 		<section id="user-search">
-			<h1>Search for a user</h1>
-			<form action="">
-				<input type="text" class="search-user-input" placeholder="insert a username"></input>
-				<input type="submit" class="search-user-submit"></input>
-			</form>
-
+			<div class="search-area-container">
+				<form action="">
+					<input type="text" class="search-user-input" placeholder="insert a username"></input>
+					<input type="submit" class="search-user-submit" value="Search"></input>
+				</form>
+			</div>
 			<div id="user-gallery">
-				<h1 data-bind="tagTitle"></h1>
+				<h1 data-bind="userNameTag"></h1>
+				<span data-bind="errorMessage"></span>
 				<ul id="user-gallery-ul">
 	                <li data-bind="userId" class="userItem">
 	                    <a href="" data-bind="userLink">
@@ -51,10 +59,12 @@
 	        <div id="user-detail-view">
 	            <a href="" data-bind="photoLink">
                     <img data-bind="photoImage"/>
-                    <span data-bind="photoLikes"></span>
-                    <span data-bind="photoTitle"></span>
-                    <span data-bind="photoUser"></span>
-                    <span data-bind="fallbackError"></span>
+                    <div class="user-detail-info">
+	                    <span data-bind="photoLikes"></span>
+	                    <span data-bind="photoTitle"></span>
+	                    <span data-bind="photoUser"></span>
+	                    <span data-bind="fallbackError"></span>
+	                </div>
 	            </a>
 	        </div>
 
@@ -63,12 +73,18 @@
 		<section id="user-feed">
 			
 			<div id="user-info">
+				<span data-bind="errorMessage"></span>
 				<img data-bind="profilePicture"/>
-				<span data-bind="username"></span>
-				<span data-bind="media"></span>
-				<span data-bind="followers"></span>
-				<span data-bind="follows"></span>
-				<a data-bind="website" target="_blank"></a>
+				<div class="user-detail-info">
+					<span data-bind="username" class="user-info-username"></span>
+					<div class="user-detail-info-media">
+						<span data-bind="media"></span>
+						<span data-bind="followers"></span>
+						<span data-bind="follows"></span>
+					</div>
+					<span data-bind="bio"></span>
+					<a data-bind="website" target="_blank"></a>
+				</div>
 			</div>
 			
 			<div id="user-photo-feed">
@@ -76,7 +92,10 @@
 	                <li data-bind="photoId" class="photoItem">
 	                    <a href="" data-bind="photoLink">
 	                        <img data-bind="imgSrc"/>
-	                        <span data-bind="likes">
+							<div class="user-feed-photo-hover">	
+								<img src="static/assets/img/heart.svg" class="user-photo-feed-heart">
+		                        <span data-bind="likes"></span>
+		                    <div>
 	                    </a>
 	                </li>
 	            </ul>
@@ -85,25 +104,16 @@
 		</section>
 
 		<section id="tag-search">
-			<h1>Search for on a tag</h1>
-			<form action="">
-				<input type="text" class="search-input" placeholder="insert a tag"></input>
-				<input type="submit" class="search-submit"></input>
-			</form>
+			<div class="search-area-container">
+				<form action="">
+					<input type="text" class="search-input" placeholder="insert a tag"></input>
+					<input type="submit" value="Search" class="search-submit"></input>
+				</form>
+			</div>
 			
-
-			<div id="photo-detail-view">
-	            <a href="" data-bind="photoLink">
-                    <img data-bind="photoImage" class="photo-detail-view-img"/>
-                    <video data-bind="photoVideo" class="photo-detail-view-video" controls autoplay></video>
-                    <span data-bind="photoLikes"></span>
-                    <span data-bind="photoTitle"></span>
-                    <span data-bind="photoUser"></span>
-	            </a>
-	        </div>
-
 			<div id="photo-gallery">
-				<h1 data-bind="tagTitle"></h1>
+				<h1 data-bind="tagTitle">
+				</h1>
 				<ul id="photo-gallery-ul">
 	                <li data-bind="photoId" class="photoItem">
 	                    <a href="" data-bind="photoLink">
@@ -114,14 +124,31 @@
 	        </div>
 		</section>
 	</main>
+	<div id="photo-detail-view" class="hide">
+        <a href="" data-bind="photoLink">
+            <img data-bind="photoImage" class="photo-detail-view-img"/>
+            <video data-bind="photoVideo" class="photo-detail-view-video" controls autoplay></video>
+            <div class="photo-detail-view-captions">
+            	<div class="detail-view-likes">
+                    <img src="static/assets/img/heart-detail-view.svg" class="user-photo-feed-heart"/>
+                    <span data-bind="photoLikes"></span>
+                     <span class="detail-view-user" data-bind="photoUser"></span>
+                </div>
+                <span data-bind="photoTitle"></span>
+               
+            </div>
+        </a>
+    </div>
 </body>
 
-
+<script src="static/js/module/animations.js"></script> 
+<script src="static/js/module/tag-feed.js"></script> 
+<script src="static/js/module/touch.js"></script>
+<script src="static/js/module/loader-module.js"></script> 
 <script src="static/js/module/user-search.js"></script> 
 <script src="static/js/module/user-feed.js"></script> 
 <script src="static/js/module/user-info.js"></script>
 <script src="static/js/module/detail-view.js"></script>  
-<script src="static/js/module/tag-feed.js"></script> 
 <script src="static/js/module/routes.js"></script> 
-<script src="static/js/module/launcher.js"></script> 
+<script src="static/js/module/launcher.js"></script>
 </html>	

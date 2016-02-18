@@ -1,15 +1,17 @@
 'use strict'
 
 var launcher = (function() {
-	
-	var loader = document.querySelector('.loader');
+
+	var init = function() {
+		// call routes
+		routes.init();
+		touch.swipe();
+		touch.shake();
+		animations.touchState();	
+	};
 
 	return {
-		init: function() {
-			// call routes
-			routes.init(loader);
-
-		}	
+		init: init
 	};
 })();
 
