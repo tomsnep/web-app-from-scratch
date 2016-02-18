@@ -4,11 +4,11 @@ var touch = (function(){
 			var el = document.querySelector('body');
 			var menuSwipe = new Hammer(el);
 
-			menuSwipe.on('swipeleft', function(){
+			menuSwipe.on('swiperight', function(){
 				var menuItem = document.querySelector('a[href="#user-search"]');
 				menuItem.click();
 			});
-			menuSwipe.on('swiperight', function(){
+			menuSwipe.on('swipeleft', function(){
 				var menuItem = document.querySelector('a[href="#tag-search"]');
 				menuItem.click();
 			});

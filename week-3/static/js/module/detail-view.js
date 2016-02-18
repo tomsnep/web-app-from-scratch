@@ -1,6 +1,9 @@
 var detailView = (function(photoId) {
 	var photoDetail = document.querySelector('#photo-detail-view');
 	var getData = function(photoId) {
+         // show loader
+        loaderModule.getLoader().classList.add('loader-active');
+
 		// Fire ajax call to get data from a specific photo
 		aja()
 		   .url('https://api.instagram.com/v1/media/' + photoId + '?access_token=806401368.5aa13be.4a08df065cbb41469c9cc20041432d3b')
@@ -99,7 +102,7 @@ var detailView = (function(photoId) {
 		}
 		// render data
 		Transparency.render(photoDetail, detailData,  directives);
-        // show loader
+        // hide loader when data is rendered
         loaderModule.getLoader().classList.remove('loader-active');
 	};
 
@@ -117,7 +120,6 @@ var detailView = (function(photoId) {
 				video.classList.remove('active');
 			};
 			
-
 			// declare directives
 			var directives = {
 
@@ -160,6 +162,9 @@ var detailView = (function(photoId) {
 
 	        // render data
 	        Transparency.render(photoDetail, detailData,  directives);
+
+            // hide loader when data is rendered
+            loaderModule.getLoader().classList.remove('loader-active');
 		};
 
 	return {
