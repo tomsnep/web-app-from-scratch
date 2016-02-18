@@ -484,8 +484,10 @@ main > section {
 }
 
 
-@media only screen  
-  and (max-width: 35em){
+@media only screen 
+  and (min-device-width: 20em) 
+  and (max-device-width: 35em)
+  and (-webkit-min-device-pixel-ratio: 2){
 	
 	/* loader */
 
