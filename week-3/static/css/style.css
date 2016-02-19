@@ -3,14 +3,13 @@
 ////////////////*/
 @font-face {
     font-family: CircularStd-Bold;
-    src: url(/assets/fonts/CircularStd-Bold.otf) format('opentype');
+    src: url(/static/assets/fonts/CircularStd-Bold.otf) format('opentype');
 }
 
 @font-face {
     font-family: CircularStd-Book;
-    src: url(/assets/fonts/CircularStd-Book.otf) format('opentype');
+    src: url(/static/assets/fonts/CircularStd-Book.otf) format('opentype');
 }
-
 
 * {
 	margin: 0;
@@ -530,7 +529,7 @@ main > section {
 	}
 
 	.search-area-container input[type="submit"] {
-	    margin-top: 1em;
+	    
 	    width: 100%;
 	    border: 15px solid #4CBA9C;
 	}
