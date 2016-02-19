@@ -101,7 +101,7 @@ body {
 .search-area-container input[type="submit"]{
 	font-size: 2em;
 	cursor: pointer;
-	margin: 0 0 0 1em;
+	margin: 0 0 1em 0;
 	width: 100%;
 	padding: .5em;
 	background-color: #4CBA9C;
@@ -181,8 +181,10 @@ h1[data-bind="userNameTag"]::first-letter{
 	text-align: left;
 }
 
-#user-info img{
-	border-radius: 50%;
+#user-info img {
+    border-radius: 50%;
+    width: 150px;
+    height: 150px;
 }
 
 .user-detail-info{

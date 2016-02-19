@@ -42,23 +42,6 @@ var detailView = (function(photoId) {
 
 	};
 
-	var checkVideo = function(detailData) {
-		// make var video to check if there is a video element in the dom
-		var video = document.querySelector('#photo-video');
-		
-		// check if video exists
-		if (typeof(video) != 'undefined' && video != null){
-				console.log('video el is true, therefore renderVideo()');
-			  	// the video element does exist, therefore the renderVideo() is fired to render the videod data
-			  	detailView.renderVideo(detailData);
-			  	
-			} else {
-				console.log('video el is false, therefore createVideo()');
-				// no video element detected, therefore createVideo() is fired to create a video element
-				detailView.createVideo(detailData);	
-			}
-	};
-
 	var renderVideo = function(detailData) {
 
 		// create directives
@@ -171,7 +154,6 @@ var detailView = (function(photoId) {
 
 		getData,
 		toggleVideo,
-		checkVideo,
 		renderVideo,
 		renderPhoto
 	}

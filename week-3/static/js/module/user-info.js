@@ -68,7 +68,7 @@ var userInfo = (function(userId) {
 
     var renderError = function(){
 
-        var data = 'Damn, this user care\'s about privacy. Therefore you can not see any of the user\'s pictures';
+        var data = 'Damn, this user care\'s about his privacy. Therefore you can not see any pictures of this user.';
 
         var directive = {
             errorMessage: {
