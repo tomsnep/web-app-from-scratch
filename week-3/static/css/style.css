@@ -25,9 +25,6 @@ body {
 	-webkit-overflow-scrolling: touch;
 }
 
-.colorMint{
-	color: #4CBA9C;
-}
 /*////////////////
 /////// NAV //////
 ////////////////*/
@@ -533,12 +530,13 @@ main > section {
 	}
 
 	.search-area-container input[type="submit"] {
+	    margin-top: 1em;
 	    width: 100%;
 	    border: 15px solid #4CBA9C;
 	}
 
 	.search-area-container input[type="text"] {
-		margin: 1em 0 0 0 ;
+		margin-top: 1em;
 		border: 15px solid #4CBA9C;
 	}
 
