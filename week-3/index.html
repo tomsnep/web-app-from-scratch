@@ -31,9 +31,6 @@
 		</ul>
 	</section>
 	<main>
-		<!-- <div class="loader">
-			<img src="static/assets/img/loader.gif" alt="loader">
-		</div> -->
 		<div class="loader">
 		  <div class="bounce1"></div>
 		  <div class="bounce2"></div>
@@ -44,8 +41,12 @@
 				<form action="">
 					<input type="text" class="search-user-input" placeholder="insert a username"></input>
 					<input type="submit" class="search-user-submit" value="Search"></input>
+					<div class="description">
+						<h1>Btw, you're searching on Instagram :)</h1>
+					</div>
 				</form>
 			</div>
+
 			<div id="user-gallery">
 				<h1 data-bind="userNameTag"></h1>
 				<span data-bind="errorMessage"></span>
@@ -74,7 +75,6 @@
 		</section>
 
 		<section id="user-feed">
-			
 			<div id="user-info">
 				<span data-bind="errorMessage"></span>
 				<img data-bind="profilePicture"/>
@@ -111,7 +111,13 @@
 				<form action="">
 					<input type="text" class="search-input" placeholder="insert a tag"></input>
 					<input type="submit" value="Search" class="search-submit"></input>
+					<div class="description">
+						<h1>Btw, you're searching on Instagram :)</h1>
+					</div>
 				</form>
+			</div>
+			<div class="description">
+				<h1>Search on Instagram</h1>
 			</div>
 			
 			<div id="photo-gallery">

@@ -3,12 +3,12 @@
 ////////////////*/
 @font-face {
     font-family: CircularStd-Bold;
-    src: url(/static/assets/fonts/CircularStd-Bold.otf) format('opentype');
+    src: url(../assets/fonts/CircularStd-Bold.otf) format('opentype');
 }
 
 @font-face {
     font-family: CircularStd-Book;
-    src: url(/static/assets/fonts/CircularStd-Book.otf) format('opentype');
+    src: url(../assets/fonts/CircularStd-Book.otf) format('opentype');
 }
 
 * {
@@ -22,6 +22,20 @@ body {
 	width: 100vw;
 	height: 100vh;
 	-webkit-overflow-scrolling: touch;
+}
+
+.description {
+	font-family: 'CircularStd-Bold', sans-serif;
+	font-size: 2.5em;
+	color: grey;
+	text-align: center;
+	width: 30%;
+	text-align: left;
+	position: absolute;
+	opacity: 0;
+    left: 2%;
+    top: 24%;
+	transition: 1s all ease;
 }
 
 /*////////////////
@@ -92,6 +106,10 @@ body {
 
 .search-area-container input[type="text"]:focus {
     outline: 2px #4CBA9C;
+}
+
+.search-area-container input[type="text"]:focus ~ .description{
+	opacity: 1;
 }
 
 .search-area-container input[type="submit"]{
@@ -272,29 +290,6 @@ h1[data-bind="userNameTag"]::first-letter{
 /*////////////////
 /// TAG SEARCH ///
 ////////////////*/
-
-.search-area-container {
-	max-width: 30%;
-	margin: 0 auto;
-	margin-top: 1em;
-	text-align: center;
-}
-
-.search-area-container input[type="text"] {
-	display: block;
-	width: 100%;
-	margin: 1em 0;
-	padding: .5em;
-	border: none;
-	border: 4px solid #4CBA9C;
-	color: #4CBA9C;
-	font-size: 2em;
-	text-align: center;
-}
-
-.search-area-container input[type="text"]:focus {
-    outline: none;
-}
 
 #photo-gallery {
 	text-align: center;
