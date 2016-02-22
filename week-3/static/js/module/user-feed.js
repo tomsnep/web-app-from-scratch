@@ -19,9 +19,6 @@ var userFeed = (function(userId) {
 
     var renderData = function(data) {
 
-        // declare parent target for transparency.js
-        var userFeedUl = document.querySelector('#user-photo-feed ul');
-
         //declare directives
         var directives = {
 
@@ -48,7 +45,7 @@ var userFeed = (function(userId) {
         };
 
         //render data
-        Transparency.render(userFeedUl, data,  directives);
+        Transparency.render(variables.userFeed.userFeedUl, data,  directives);
 
         // hide loader when data is rendered
         loaderModule.getLoader().classList.remove('loader-active');

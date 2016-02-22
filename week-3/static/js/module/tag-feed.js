@@ -1,13 +1,18 @@
 var tagFeed = (function() {
+
+	var check = (function() {
+		var el = document.querySelectorAll('#photo-gallery-ul > .photoItem');
+
+		el.onclick = function(){
+			detailView.check();
+		}
+	})();
+
 	var searchTag = function() {
-
-		// select submit and input fields
-		var submit = document.querySelector('.search-submit');
-		var input = document.querySelector('.search-input');
-
-		submit.onclick = function() {
+		
+		variables.tagFeed.submit.onclick = function() {	
 			// get input value
-			var tagName = input.value;
+			var tagName = variables.tagFeed.input.value;
 
 			// fire getData() & renderTagName() to get data and show search value
 			getData(tagName);
@@ -26,11 +31,9 @@ var tagFeed = (function() {
 		   .type('jsonp')
 		   .cache('false')
 		   .on('success', function(data) {
-		   		
-                var data = data.data;
 
                	// filter data with underscore.js
-                var filteredData = _.map(data, function(photo) {
+                var filteredData = _.map(data.data, function(photo) {
                 	return _.pick(photo, 'images','id');
                 });
 
@@ -48,11 +51,9 @@ var tagFeed = (function() {
 		   .type('jsonp')
 		   .cache('false')
 		   .on('success', function(data) {
-		   		
-                var data = data.data;
 
                	// filter data with underscore.js
-                var filteredData = _.map(data, function(photo) {
+                var filteredData = _.map(data.data, function(photo) {
                 	return _.pick(photo, 'images','id');
                 });
 
@@ -89,13 +90,12 @@ var tagFeed = (function() {
             }
         };
         // render data
-        Transparency.render(photoGalleryUl, filteredData,  directives);
+        Transparency.render(variables.tagFeed.photoGalleryUl, filteredData,  directives);
         // hide loader
         loaderModule.getLoader().classList.remove('loader-active');
 	};
 
-	var photoGallery = document.querySelector('#photo-gallery');
-
+	
 	var renderError = function(tagName){
 					
 		// declare directive
@@ -109,7 +109,7 @@ var tagFeed = (function() {
 		};
 
 		// render data
-		Transparency.render(photoGallery, tagName, directive);
+		Transparency.render(variables.tagFeed.photoGallery, tagName, directive);
 		 // hide loader
         loaderModule.getLoader().classList.remove('loader-active');
 	};
@@ -127,16 +127,16 @@ var tagFeed = (function() {
 		};
 
 		// render data
-		Transparency.render(photoGallery, tagName, directive);
+		Transparency.render(variables.tagFeed.photoGallery, tagName, directive);
 	};
 
 	return {
+		check,
 		searchTag,
 		getRandomData,
 		getData,
 		renderData,
 		renderError,
-		photoGallery,
 		renderTagName
 	}
 })();

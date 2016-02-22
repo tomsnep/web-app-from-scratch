@@ -1,16 +1,13 @@
 var touch = (function(){
 	var swipe = function(){
 
-			var el = document.querySelector('body');
-			var menuSwipe = new Hammer(el);
-
-			menuSwipe.on('swiperight', function(){
-				var menuItem = document.querySelector('a[href="#user-search"]');
-				menuItem.click();
+			(variables.touch.menuSwipe).on('swiperight', function(){
+				var userSearch = document.querySelector('a[href="#user-search"]');
+				variables.touch.userSearch.click();
 			});
-			menuSwipe.on('swipeleft', function(){
-				var menuItem = document.querySelector('a[href="#tag-search"]');
-				menuItem.click();
+			(variables.touch.menuSwipe).on('swipeleft', function(){
+				var tagSearch = document.querySelector('a[href="#tag-search"]');
+				variables.touch.tagSearch.click();
 			});
 	};
 
@@ -23,7 +20,6 @@ var touch = (function(){
 		startShake.start();
 
 		var randomPictures = function() {
-			console.log('randomPictures is triggered')
 		    window.location.hash = '#tag-search';
 		    tagFeed.getRandomData();
 		};

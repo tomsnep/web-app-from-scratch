@@ -36,11 +36,11 @@
 		  <div class="bounce2"></div>
 		  <div class="bounce3"></div>
 		</div>
-		<section id="user-search">
+		<section id="user-search" class="nav-section">
 			<div class="search-area-container">
 				<form action="">
-					<input type="text" class="search-user-input" placeholder="insert a username"></input>
-					<input type="submit" class="search-user-submit" value="Search"></input>
+					<input type="text" class="user-search-input" placeholder="insert a username"></input>
+					<input type="submit" class="user-search-submit" value="Search"></input>
 					<div class="description">
 						<h1>Btw, you're searching on Instagram :)</h1>
 					</div>
@@ -74,7 +74,7 @@
 
 		</section>
 
-		<section id="user-feed">
+		<section id="user-feed" class="nav-section">
 			<div id="user-info">
 				<span data-bind="errorMessage"></span>
 				<img data-bind="profilePicture"/>
@@ -103,23 +103,18 @@
 	                </li>
 	            </ul>
 	        </div> 
-
 		</section>
 
-		<section id="tag-search">
+		<section id="tag-search" class="nav-section">
 			<div class="search-area-container">
 				<form action="">
-					<input type="text" class="search-input" placeholder="insert a tag"></input>
-					<input type="submit" value="Search" class="search-submit"></input>
+					<input type="text" class="tag-search-input" placeholder="insert a tag"></input>
+					<input type="submit" value="Search" class="tag-search-submit"></input>
 					<div class="description">
 						<h1>Btw, you're searching on Instagram :)</h1>
 					</div>
 				</form>
 			</div>
-			<div class="description">
-				<h1>Search on Instagram</h1>
-			</div>
-			
 			<div id="photo-gallery">
 				<h1 data-bind="tagTitle">
 				</h1>
@@ -144,12 +139,11 @@
                      <span class="detail-view-user" data-bind="photoUser"></span>
                 </div>
                 <span data-bind="photoTitle"></span>
-               
             </div>
         </a>
     </div>
 </body>
-
+<script src="static/js/module/variables.js"></script> 
 <script src="static/js/module/animations.js"></script> 
 <script src="static/js/module/tag-feed.js"></script> 
 <script src="static/js/module/touch.js"></script>

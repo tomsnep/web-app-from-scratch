@@ -8,21 +8,17 @@ var userInfo = (function(userId) {
            .cache('false')
            .on('success', function(data) {
                 
-                var data = data.data;
-                console.log(data);
                 //check if there is data
-                if (data == undefined){
-                        renderError(data);
+                if (data.data == undefined){
+                        renderError(data.data);
                     } else {
-                        renderData(data);
+                        renderData(data.data);
                    }
            })   
            .go();
     };
 
-    var userInfo = document.querySelector('#user-info');
-
-    var renderData = function(filteredData) {
+    var renderData = function(data) {
         // declare directives
         var directives = {
 
@@ -63,7 +59,7 @@ var userInfo = (function(userId) {
             },
         };
         // render data
-        Transparency.render(userInfo, filteredData,  directives);
+        Transparency.render(variables.userFeed.userInfo, data, directives);
     };
 
     var renderError = function(){
@@ -78,8 +74,8 @@ var userInfo = (function(userId) {
             },
         };
         // render error
-        Transparency.render(userInfo, data, directive);
-         // hide loader
+        Transparency.render(variables.userFeed.userInfo, data, directive);
+        // hide loader
         loaderModule.getLoader().classList.remove('loader-active');
     }
 

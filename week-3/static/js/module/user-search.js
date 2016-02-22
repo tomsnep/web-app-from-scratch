@@ -1,13 +1,10 @@
-var userSearch = (function(loader) {
+var userSearch = (function() {
 
 	var searchTag = function() {
-		// select submit and input fields 
-		var submit = document.querySelector('.search-user-submit');
-		var input = document.querySelector('.search-user-input');
-
-		submit.onclick = function() {			
+	
+		variables.userSearch.submit.onclick = function() {			
 			// get input value
-			var user = input.value;
+			var user = variables.userSearch.input.value;
 
 			// fire getData() and renderUser() functions to get data and show search value 
 			getData(user);
@@ -25,10 +22,8 @@ var userSearch = (function(loader) {
 		   .cache('false')
 		   .on('success', function(data) {
 		   		
-                var data = data.data;
-         
          		// filter data with underscore.js
-                var filteredData = _.map(data, function(photo) {
+                var filteredData = _.map(data.data, function(photo) {
                 	return _.pick(photo, 'username','id', 'profile_picture');
                 });
 
@@ -44,8 +39,6 @@ var userSearch = (function(loader) {
 		   .go();
 	};
 	
-	var userGalleryUl = document.querySelector('#user-gallery-ul');
-
 	var renderData = function(filteredData) {		
 		// declare directives
 		var directives = {
@@ -67,12 +60,10 @@ var userSearch = (function(loader) {
             }
         };
         // render data
-        Transparency.render(userGalleryUl, filteredData,  directives);
+        Transparency.render(variables.userSearch.userGalleryUl, filteredData,  directives);
         // hide loader 
         loaderModule.getLoader().classList.remove('loader-active');
 	};
-
-	var photoGallery = document.querySelector('#user-gallery');
 
 	var renderError = function(user) {
 		
@@ -84,7 +75,7 @@ var userSearch = (function(loader) {
 			}
 		};
 		//render error
-		Transparency.render(photoGallery, user, directive);
+		Transparency.render(variables.userSearch.photoGallery, user, directive);
 		// hide loader
 		loaderModule.getLoader().classList.remove('loader-active');
 	};
@@ -92,7 +83,6 @@ var userSearch = (function(loader) {
 	var renderUser = function(user) {
 		
 		var directive = {
-
 			userNameTag: {
 				text: function(params) {
 					return 'You are looking for: ' + user;
@@ -100,7 +90,7 @@ var userSearch = (function(loader) {
 			}
 		};
 		// render user search tag 
-		Transparency.render(photoGallery, user, directive);
+		Transparency.render(variables.userSearch.photoGallery, user, directive);
 	};
 
 	return {
@@ -108,7 +98,6 @@ var userSearch = (function(loader) {
 		getData,
 		renderData,
 		renderError,
-		photoGallery,
 		renderUser
 	}
 })();

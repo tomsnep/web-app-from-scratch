@@ -1,15 +1,11 @@
 var routes = (function() {
 
-		window.location.hash = '#user-search';
-		var usersearch = document.querySelector('#user-search');
-		usersearch.classList.add('active');
-		
+		//
 		var init = function() {
 			
 			// set #user-search as default
 			window.location.hash = '#user-search';
-			var usersearch = document.querySelector('#user-search');
-			usersearch.classList.add('active');
+			variables.routes.usersearch.classList.add('active');
 
 			routie({
 			    'user-search': function() {
@@ -48,13 +44,12 @@ var routes = (function() {
 
 		var toggle = function(hashName) { 
 
-			// get all sections and the active section by var hashName
-			var allSections = document.querySelectorAll('section');
+			// get the active section by var hashName
 			var activeSection = document.getElementById(hashName);
 			
 			// remove class active for all sections
-			for (var i=0; i<allSections.length; i++) {
-				  allSections[i].classList.remove('active');
+			for (var i = 0; i < variables.routes.allSections.length; i++) {
+				  variables.routes.allSections[i].classList.remove('active');
 			};
 
 			// toggle class active for the active section

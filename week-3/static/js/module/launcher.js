@@ -7,7 +7,7 @@ var launcher = (function() {
 		routes.init();
 		touch.swipe();
 		touch.shake();
-		animations.touchState();	
+		animations.touchState();		
 	};
 
 	return {

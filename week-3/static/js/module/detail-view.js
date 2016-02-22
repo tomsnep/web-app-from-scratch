@@ -1,7 +1,8 @@
 var detailView = (function(photoId) {
-	var photoDetail = document.querySelector('#photo-detail-view');
+	
 	var getData = function(photoId) {
-         // show loader
+        
+        // show loader
         loaderModule.getLoader().classList.add('loader-active');
 
 		// Fire ajax call to get data from a specific photo
@@ -10,15 +11,13 @@ var detailView = (function(photoId) {
 		   .type('jsonp')
 		   .cache('false')
 		   .on('success', function(data) {	
-                var detailData = data.data;
-              
                 // check if photo is a video, if true > fire checkVideo() 
                 // to see if there is already a html video tag or else 
                 // fire renderPhoto() to render the image
-                if(detailData.type == 'video'){	
-                	detailView.toggleVideo(detailData);
+                if(data.data.type == 'video'){	
+                	detailView.toggleVideo(data.data);
                 } else {
-                	detailView.renderPhoto(detailData)
+                	detailView.renderPhoto(data.data)
                 }
             })
             .go();
@@ -27,15 +26,13 @@ var detailView = (function(photoId) {
 	};
 
 	var toggleVideo = function(detailData) {
-		var videoEl = document.querySelector('.photo-detail-view-video');
-		var img = document.querySelector('.photo-detail-view-img');
 
 		// add active class to show video element
-		videoEl.classList.add('active'); 
+		variables.detailView.videoEl.classList.add('active'); 
 		
 		// remove active class to hide img element
-		if (img.classList.contains('active')) {
-			img.classList.remove('active');
+		if (variables.detailView.img.classList.contains('active')) {
+			variables.detailView.img.classList.remove('active');
 		};
 
 		detailView.renderVideo(detailData);
@@ -84,23 +81,19 @@ var detailView = (function(photoId) {
 			},
 		}
 		// render data
-		Transparency.render(photoDetail, detailData,  directives);
+		Transparency.render(variables.detailView.photoDetail, detailData,  directives);
         // hide loader when data is rendered
         loaderModule.getLoader().classList.remove('loader-active');
 	};
 
 	var renderPhoto = function(detailData) {
 
-			// make var video to check if there is a video element in the dom
-			var video = document.querySelector('.photo-detail-view-video');
-			var img = document.querySelector('.photo-detail-view-img');
-
 			// add active class to display image
-			img.classList.add('active');
+			variables.detailView.img.classList.add('active');
 
 			// remove active class from video element
-			if (video.classList.contains('active')) {
-				video.classList.remove('active');
+			if (variables.detailView.videoEl.classList.contains('active')) {
+				variables.detailView.videoEl.classList.remove('active');
 			};
 			
 			// declare directives
@@ -144,14 +137,13 @@ var detailView = (function(photoId) {
 	        };
 
 	        // render data
-	        Transparency.render(photoDetail, detailData,  directives);
+	        Transparency.render(variables.detailView.photoDetail, detailData,  directives);
 
             // hide loader when data is rendered
             loaderModule.getLoader().classList.remove('loader-active');
 		};
 
 	return {
-
 		getData,
 		toggleVideo,
 		renderVideo,

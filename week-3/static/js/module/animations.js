@@ -1,10 +1,6 @@
 var animations = (function() {
 
-	var main = document.querySelector('main');
-	var detailview = document.querySelector('#photo-detail-view');
-	var video = document.querySelector('#photo-detail-view video');
-
-	var touchState = function(){
+	var touchState = function() {
 		
 		if ('addEventListener' in document) {
 		    document.addEventListener('DOMContentLoaded', function() {
@@ -13,12 +9,11 @@ var animations = (function() {
 		}
 	};
 
-	var blur = function(){
+	var blur = function() {
 		
-		main.classList.add('blur');
-		detailview.classList.add('active');
-
-		
+		variables.animations.main.classList.add('blur');
+		variables.animations.detailView.classList.add('active');
+	
 		document.onkeydown = function(evt) {
 		    evt = evt || window.event;
 		    if (evt.keyCode == 27) {
@@ -26,14 +21,14 @@ var animations = (function() {
 		    }
 		};
 
-		document.querySelector('html').addEventListener('click' ,escapeDetailView);
+		variables.animations.html.addEventListener('click' ,escapeDetailView);
 		
 	};
 
-	var escapeDetailView = function(){
-			main.classList.remove('blur');
-			detailview.classList.remove('active');
-			video.pause();
+	var escapeDetailView = function() {
+			variables.animations.main.classList.remove('blur');
+			variables.animations.detailView.classList.remove('active');
+			variables.animations.video.pause();
 	};
 
 	return {
