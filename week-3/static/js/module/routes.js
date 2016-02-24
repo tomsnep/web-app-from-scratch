@@ -1,6 +1,5 @@
 var routes = (function() {
 
-		//
 		var init = function() {
 			
 			// set #user-search as default
